@@ -47,6 +47,9 @@ def play_game(difficulty):
             try:
                 user_guess = int(input("Enter your guess: "))
                 if user_guess >= 1 and user_guess <= 100:
+                    if user_guess == actual_number:
+                        user_won() 
+                        return
                     process_guess(user_guess, actual_number)
                     chances = chances - 1
                     print(f"You have {chances} chance(s) left")
@@ -65,9 +68,7 @@ def play_game(difficulty):
 
 
 def process_guess(guess, value):
-    if guess == value:
-        user_won()
-    elif guess < value:
+    if guess < value:
         print("Your number was too small")
     else:
         print("Your number was too big")
